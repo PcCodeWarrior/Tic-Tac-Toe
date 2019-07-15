@@ -4,10 +4,19 @@ import './App.css';
 
 import {values} from './startingValues';
 
+
+
 class App extends Component {
+
+    state ={values};
+
+    onCellClick = (e) =>{
+        console.log(e.cellID+'   '+e.cellValue)
+};
+
     render() {
         return <div>
-         <Board values={values}/>
+         <Board values={values} onCellClick={this.onCellClick}/>
         </div>;
     };
 }

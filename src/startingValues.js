@@ -6,17 +6,17 @@ export const values =[
     },
     {
         cellID: 2,
-        cellValue: 'X',
+        cellValue: 'O',
     },
     {
         cellID: 3,
-        cellValue: 'X',
+        cellValue: '',
     },    {
         cellID: 4,
-        cellValue: 'X',
+        cellValue: '',
     },    {
         cellID: 5,
-        cellValue: 'X',
+        cellValue: 'O',
     },    {
         cellID: 6,
         cellValue: 'X',
