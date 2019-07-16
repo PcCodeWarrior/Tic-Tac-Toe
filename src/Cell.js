@@ -5,8 +5,7 @@ const Cell = ({cellID,cellValue, onCellClick}) => {
     const classColor = cellValue==='X'? 'green' :cellValue==='Y'?'red':'';
     return (
         <div className={classColor}  onClick={()=>onCellClick({cellID,cellValue})} >
-            <h2>{cellID}</h2>
-            <p>{cellValue}</p>
+            <h1>{cellValue}</h1>
         </div>
     );
 };

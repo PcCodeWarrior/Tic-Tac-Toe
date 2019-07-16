@@ -7,22 +7,31 @@ import {values} from './startingValues';
 
 class App extends Component {
 
-    state = {currentValues: [], choice:''};
+    state = {currentValues: [], choice: ''};
 
-    componentDidMount(){
+    componentDidMount() {
         this.setState({currentValues: values})
     }
 
     onCellClick = (e) => {
-        console.log(e.cellID + '   ' + e.cellValue);
-        let cellValue = e.cellValue===''||e.cellValue==='Y'?'X':'Y';
-        this.setState({currentValues: this.state.currentValues.map(val=>(val.cellID===e.cellID? {...val, cellValue:cellValue}:val))});
-
-        this.setState( {choice: cellValue})
+        let cellValue = this.nextUser(e.cellValue);
+        this.setState({
+            currentValues: this.state.currentValues.map(val => (val.cellID === e.cellID ? {...val, cellValue: cellValue} : val))
+        });
     };
 
-    startOver = () =>{
-        this.setState({currentValues: values, choice:'' })
+    startOver = () => {
+        this.setState({currentValues: values, choice: ''})
+    };
+
+    nextUser = (cellValue) => {
+        if (cellValue.length === 0) //this cell has not been clicked in
+        {
+            let newChoice = this.state.choice === 'X' ? 'Y' : 'X';
+            this.setState({choice: newChoice});
+            return (newChoice);
+        } else
+            return cellValue
     };
 
 
