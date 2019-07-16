@@ -1,12 +1,11 @@
 export const values =[
-
     {
         cellID: 1,
-        cellValue: 'X',
+        cellValue: '',
     },
     {
         cellID: 2,
-        cellValue: 'O',
+        cellValue: '',
     },
     {
         cellID: 3,
@@ -16,22 +15,19 @@ export const values =[
         cellValue: '',
     },    {
         cellID: 5,
-        cellValue: 'O',
+        cellValue: '',
     },    {
         cellID: 6,
-        cellValue: 'X',
+        cellValue: '',
     },    {
         cellID: 7,
-        cellValue: 'X',
+        cellValue: '',
     },    {
         cellID: 8,
-        cellValue: 'X',
+        cellValue: '',
     },    {
         cellID: 9,
-        cellValue: 'X',
+        cellValue: '',
     },
-
-
-
 ];
 
