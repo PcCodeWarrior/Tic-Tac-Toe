@@ -7,7 +7,7 @@ import {values} from './startingValues';
 
 class App extends Component {
 
-    state = {currentValues: []};
+    state = {currentValues: [], choice:''};
 
     componentDidMount(){
         this.setState({currentValues: values})
@@ -15,18 +15,21 @@ class App extends Component {
 
     onCellClick = (e) => {
         console.log(e.cellID + '   ' + e.cellValue);
-        this.setState({currentValues: this.state.currentValues.map(val=>(val.cellID===e.cellID? {...val, cellValue:'X'}:val))})
+        let cellValue = e.cellValue===''||e.cellValue==='Y'?'X':'Y';
+        this.setState({currentValues: this.state.currentValues.map(val=>(val.cellID===e.cellID? {...val, cellValue:cellValue}:val))});
+
+        this.setState( {choice: cellValue})
     };
 
     startOver = () =>{
-        this.setState({currentValues: values})
+        this.setState({currentValues: values, choice:'' })
     };
 
 
     render() {
-        const {currentValues} = this.state;
+        const {currentValues, choice} = this.state;
         return <div>
-            <Board values={currentValues} onCellClick={this.onCellClick}/>
+            <Board values={currentValues} choice={choice} onCellClick={this.onCellClick}/>
             <button onClick={this.startOver}>Reset</button>
         </div>;
     };

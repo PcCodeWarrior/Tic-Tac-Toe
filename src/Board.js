@@ -2,7 +2,7 @@ import React from 'react';
 import Cell from './Cell';
 import  './Board.css';
 
-const board = ({values, onCellClick}) => {
+const board = ({values, choice, onCellClick}) => {
     return (
         <div  className="flex-container">{
             values.map(({cellID, cellValue}) => {
@@ -11,6 +11,7 @@ const board = ({values, onCellClick}) => {
                     key={cellID}
                     cellID={cellID}
                     cellValue = {cellValue}
+                    choice={choice}
                     onCellClick={onCellClick}
                 />
             )
