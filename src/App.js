@@ -8,7 +8,7 @@ import {values} from './startingValues';
 
 class App extends Component {
 
-    state = {currentValues: [], choice: ''};
+    state = {currentValues: [], choice: '', theWinnerIs:''};
 
     componentDidMount() {
         this.setState({currentValues: values})
@@ -17,14 +17,15 @@ class App extends Component {
     onCellClick = (e) => {
         let cellValue = this.nextUser(e.cellValue);
         let currentCell =e.cellID;
-        this.setState({
-            currentValues: this.state.currentValues.map(val => (val.cellID === e.cellID ? {...val, cellValue: cellValue} : val))
-        }, ()=>isWinner(this.state.currentValues,currentCell)?alert(cellValue+' is the winner'):null);
-
+        if(this.state.theWinnerIs.length==0){
+            this.setState({
+                currentValues: this.state.currentValues.map(val => (val.cellID === e.cellID ? {...val, cellValue: cellValue} : val))
+            }, ()=>isWinner(this.state.currentValues,currentCell)? this.setState({theWinnerIs: cellValue+' is the Winner'}):null);
+        }
     };
 
     startOver = () => {
-        this.setState({currentValues: values, choice: ''})
+        this.setState({currentValues: values, choice: '', theWinnerIs:''})
     };
 
     nextUser = (cellValue) => {
@@ -39,10 +40,11 @@ class App extends Component {
 
 
     render() {
-        const {currentValues, choice} = this.state;
+        const {currentValues, choice,theWinnerIs} = this.state;
         return <div>
-            <Board values={currentValues} choice={choice} onCellClick={this.onCellClick}/>
+            <h2 style={{textAlign:'center'}}>{theWinnerIs}</h2>
             <button onClick={this.startOver}>Reset</button>
+            <Board values={currentValues} choice={choice} onCellClick={this.onCellClick}/>
         </div>;
     };
 }
