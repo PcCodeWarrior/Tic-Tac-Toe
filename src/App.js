@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Board from './Board';
 import './App.css';
+import isWinner from './helpers/gameLogic';
 
 import {values} from './startingValues';
 
@@ -15,9 +16,11 @@ class App extends Component {
 
     onCellClick = (e) => {
         let cellValue = this.nextUser(e.cellValue);
+        let currentCell =e.cellID;
         this.setState({
             currentValues: this.state.currentValues.map(val => (val.cellID === e.cellID ? {...val, cellValue: cellValue} : val))
-        });
+        }, ()=>isWinner(this.state.currentValues,currentCell)?alert(cellValue+' is the winner'):null);
+
     };
 
     startOver = () => {
