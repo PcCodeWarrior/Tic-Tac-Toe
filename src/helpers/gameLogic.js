@@ -1,4 +1,4 @@
-const isWinner = (myArray, currentCell) => {
+export const isWinner = (myArray, currentCell) => {
 
     if (myArray[0].cellValue !==''&&(myArray[0].cellValue === myArray[1].cellValue && myArray[0].cellValue === myArray[2].cellValue));
     else if (myArray[3].cellValue !==''&&(myArray[3].cellValue === myArray[4].cellValue && myArray[3].cellValue === myArray[5].cellValue));
@@ -14,4 +14,10 @@ const isWinner = (myArray, currentCell) => {
     return true
 };
 
-export default isWinner;
+
+export const isGameOver = (myArray) =>{
+ return  myArray.every(myObject =>myObject.cellValue.length>0)
+};
+
+
+

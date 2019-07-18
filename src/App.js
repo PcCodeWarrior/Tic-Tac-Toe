@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Board from './Board';
 import './App.css';
-import isWinner from './helpers/gameLogic';
+import {isWinner, isGameOver} from './helpers/gameLogic';
 
 import {values} from './startingValues';
 
@@ -17,7 +17,7 @@ class App extends Component {
     onCellClick = (e) => {
         let cellValue = this.nextUser(e.cellValue);
         let currentCell =e.cellID;
-        if(this.state.theWinnerIs.length==0){
+        if(this.state.theWinnerIs.length===0){
             this.setState({
                 currentValues: this.state.currentValues.map(val => (val.cellID === e.cellID ? {...val, cellValue: cellValue} : val))
             }, ()=>isWinner(this.state.currentValues,currentCell)? this.setState({theWinnerIs: cellValue+' is the Winner'}):null);
@@ -42,7 +42,7 @@ class App extends Component {
     render() {
         const {currentValues, choice,theWinnerIs} = this.state;
         return <div>
-            <h2 style={{textAlign:'center'}}>{theWinnerIs}</h2>
+           <h2 style={{textAlign:'center'}}> {isGameOver(currentValues) && theWinnerIs.length===0?'The Game was a DRAW':theWinnerIs}</h2>
             <button onClick={this.startOver}>Reset</button>
             <Board values={currentValues} choice={choice} onCellClick={this.onCellClick}/>
         </div>;
